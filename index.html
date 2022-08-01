@@ -21,7 +21,7 @@
     <canvas id="cvs"></canvas>
     <script type="text/javascript">
       
-      let cvs, ctx, imgData, pixels, w, h;
+      let cvs, ctx, imgData, pixels, w, h, itvl;
       
       window.addEventListener("load", ()=>{
         cvs = document.querySelector("#cvs");
@@ -34,16 +34,22 @@
         pixels.forEach((v,i)=>{if(i%4==3)pixels[i]=255});
         
         cvs.addEventListener("click", ()=>{
-          let i;
-          for(let y=0; y<h; ++y){
-            for(let x=0; x<w; ++x){
-              i = x*4+y*w*4;
-              pixels[i+0] = (x+3)%3 ? 0 : 255;
-              pixels[i+1] = (x+2)%3 ? 0 : 255;
-              pixels[i+2] = (x+1)%3 ? 0 : 255;
+          let i, d=1;
+          if(itvl)clearInterval(itvl);
+          itvl = setInterval(()=>{
+            for(let y=0; y<h; ++y){
+              for(let x=0; x<w; ++x){
+                i = x*4+y*w*4;
+                pixels[i+0] = (Math.floor(x/d)+3)%3 ? 0 : 255;
+                pixels[i+1] = (Math.floor(x/d)+2)%3 ? 0 : 255;
+                pixels[i+2] = (Math.floor(x/d)+1)%3 ? 0 : 255;
+              }
             }
-          }
-          ctx.putImageData(imgData, 0, 0);
+            
+            ctx.putImageData(imgData, 0, 0);
+            
+            d++;
+          }, 300);
         });
       });
       
