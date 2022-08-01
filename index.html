@@ -21,7 +21,7 @@
       
       window.addEventListener("load", ()=>{
         cvs = document.querySelector("#cvs");
-        size = cvs.width = cvs.height = Math.min(window.innerWidth, window.innerHeight) * 0.9;
+        size = cvs.width = cvs.height = Math.min(window.innerWidth, window.innerHeight);
         ctx = cvs.getContext("2d");
         imgData = ctx.createImageData(size, size);
         pixels = imgData.data;
