@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RGB Sample</title>
     <style type="text/css">
       *{
@@ -24,8 +25,8 @@
       
       window.addEventListener("load", ()=>{
         cvs = document.querySelector("#cvs");
-        w = cvs.width = window.innerWidth;
-        h = cvs.height = window.innerHeight;
+        w = cvs.width = window.innerWidth * window.devicePixelRatio;
+        h = cvs.height = window.innerHeight * window.devicePixelRatio;
         ctx = cvs.getContext("2d");
         imgData = ctx.createImageData(w, h);
         pixels = imgData.data;
