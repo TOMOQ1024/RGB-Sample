@@ -17,22 +17,21 @@
     <canvas id="cvs">
     <script type="text/javascript">
       
-      let cvs, ctx, imgData, pixels, size, d;
+      let cvs, ctx, imgData, pixels, size;
       
       window.addEventListener("load", ()=>{
-        d = 1;
         cvs = document.querySelector("#cvs");
         size = cvs.width = cvs.height = Math.min(window.innerWidth, window.innerHeight) * 0.9;
         ctx = cvs.getContext("2d");
         imgData = ctx.createImageData(size, size);
         pixels = imgData.data;
         
-        pixels.forEach((v,i)=>{pixels[i]=255});
+        pixels.forEach((v,i)=>{if(i%4==3)pixels[i]=255});
         
         cvs.addEventListener("click", ()=>{
           let i;
-          for(let y=0; y<size; y+=d){
-            for(let x=0; x<size; x+=d){
+          for(let y=0; y<size; ++y){
+            for(let x=0; x<size; ++x){
               i = x*4+y*size*4;
               pixels[i+0] = (x+3)%3 ? 0 : 255;
               pixels[i+1] = (x+2)%3 ? 0 : 255;
