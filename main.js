@@ -18,36 +18,38 @@ window.addEventListener("load", ()=>{
   pixels.forEach((v,i)=>{if(i%4==3)pixels[i]=255});
 
   (function(){
-    _ctx.font = `bold ${Math.min(w/3,h/4)}px gothic`;
-    _ctx.textAlign = "center";
-    _ctx.textBaseline = "bottom";
-    let gd = _ctx.createLinearGradient(0, 0, 0, h/4);
+    _ctx.font = `bold ${Math.min(w/2,h/3)}px gothic`;
+    _ctx.textAlign = "left";
+    _ctx.textBaseline = "middle";
+    let gd = _ctx.createLinearGradient(0, h/3, 0, h*2/3);
     gd.addColorStop(0.0, "#fd0");
     gd.addColorStop(1.0, "#f80");
     _ctx.fillStyle = gd;
-    _ctx.fillText("三原色", w/2, h/4);
+    _ctx.fillText("三原色", 0, h/2);
     _ctx.globalCompositeOperation = "lighter";
     _ctx.fillStyle = "#f00";
     
+    let x0 = w * .75;
+    let y0 = h/2;
     let r = Math.min(w/4,h/5);
     _ctx.beginPath();
     _ctx.arc(
-      w*.5-r/2*Math.sin(Math.PI/3*0),
-      h*.6-r/2*Math.cos(Math.PI/3*0),
+      x0-r/2*Math.sin(Math.PI/3*0),
+      y0-r/2*Math.cos(Math.PI/3*0),
       r, 0, Math.PI*2);
     _ctx.fill();
     _ctx.fillStyle = "#0f0";
     _ctx.beginPath();
     _ctx.arc(
-      w*.5-r/2*Math.sin(Math.PI/3*2),
-      h*.6-r/2*Math.cos(Math.PI/3*2),
+      x0-r/2*Math.sin(Math.PI/3*2),
+      y0-r/2*Math.cos(Math.PI/3*2),
       r, 0, Math.PI*2);
     _ctx.fill();
     _ctx.fillStyle = "#00f";
     _ctx.beginPath();
     _ctx.arc(
-      w*.5-r/2*Math.sin(Math.PI/3*4),
-      h*.6-r/2*Math.cos(Math.PI/3*4),
+      x0-r/2*Math.sin(Math.PI/3*4),
+      y0-r/2*Math.cos(Math.PI/3*4),
       r, 0, Math.PI*2);
     _ctx.fill();
     _imgData = _ctx.getImageData(0, 0, w, h);
