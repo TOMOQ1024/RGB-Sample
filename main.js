@@ -82,8 +82,8 @@ window.addEventListener("load", ()=>{
       for(let y=0; y<h; ++y){
         for(let x=0; x<w; ++x){
           i = x*4+y*w*4;
-          j = Math.floor(Math.min((x-mx)/(d**3+1)+mx,w-1))*4
-            + Math.floor(Math.min((y-my)/(d**3+1)+my,h-1))*w*4;
+          j = Math.floor(Math.min((Math.floor(x/(d**3+1))*(d**3+1)-mx)/(d**3+1)+mx,w-1))*4
+            + Math.floor(Math.min((Math.floor(y/(d**3+1))*(d**3+1)-my)/(d**3+1)+my,h-1))*w*4;
           if(!_pixels[j+3]){
             pixels[i+0] = (Math.floor(x/(d**3+1))+3)%3 ? 0 : 255;
             pixels[i+1] = (Math.floor(x/(d**3+1))+2)%3 ? 0 : 255;
