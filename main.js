@@ -18,14 +18,14 @@ window.addEventListener("load", ()=>{
   pixels.forEach((v,i)=>{if(i%4==3)pixels[i]=255});
 
   (function(){
-    _ctx.font = `bold ${Math.min(w/2,h/3)}px gothic`;
-    _ctx.textAlign = "left";
+    _ctx.font = `bold ${Math.min(w/2/3,h/3)}px gothic`;
+    _ctx.textAlign = "right";
     _ctx.textBaseline = "middle";
     let gd = _ctx.createLinearGradient(0, h/3, 0, h*2/3);
     gd.addColorStop(0.0, "#fd0");
     gd.addColorStop(1.0, "#f80");
     _ctx.fillStyle = gd;
-    _ctx.fillText("三原色", 0, h/2);
+    _ctx.fillText("三原色", w/2, h/2);
     _ctx.globalCompositeOperation = "lighter";
     _ctx.fillStyle = "#f00";
     
